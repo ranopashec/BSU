@@ -14,11 +14,11 @@ Index of all my school projects
 - Mathematical Methods of computer graphics
 # 2st year
 ## 3 semester
-- Industrial Programming (Java) // not listed
+- [Java Industrial Programming](https://github.com/ranopashec/java)
 - [Computer Graphics](https://github.com/ranopashec/ComputerGraphics)
 - [Data Structures and Algorithms](https://github.com/ranopashec/DSA)
-- Graph Therory
-- [Calculation methods] 
+- [Graph Therory](https://github.com/ranopashec/GraphTheory)
+- [Calculation methods](https://github.com/ranopashec/CalculationMethods)
 ## 4 semester
 ---
 # 3d year
