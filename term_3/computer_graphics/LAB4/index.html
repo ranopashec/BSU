@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Алгоритмы Растеризации</h1>
+
+    <div class="container">
+        <div id="controls">
+            <select id="algorithm">
+                <option value="stepByStep">Step-by-step</option>
+                <option value="dda">DDA</option>
+                <option value="bresenham">Bresenham's Line</option>
+                <option value="bresenhamCircle">Bresenham's Circle</option>
+            </select>
+            <input type="number" id="x0" placeholder="x0" required>
+            <input type="number" id="y0" placeholder="y0" required>
+            <input type="number" id="x1" placeholder="x1">
+            <input type="number" id="y1" placeholder="y1">
+            <input type="number" id="radius" placeholder="radius">
+            <button onclick="draw()">Draw</button>
+        </div>
+
+        <canvas id="canvas" width="50" height="50"></canvas>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

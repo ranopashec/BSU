@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    text-align: center;
+    color: #ff69b4; /* Neon pink text color */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 20%;
+}
+
+canvas {
+    border: 3px solid #ff69b4; /* Neon pink border */
+    padding: 5px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: #000; /* Ensure canvas background is black */
+    width: 70%;
+}
+
+input, select, button {
+    border: 2px solid #ff69b4; /* Neon pink border */
+    background: #000; /* Black background for inputs */
+    border-radius: 5px;
+    height: 40px;
+    width: 100%;
+    font-weight: bolder;
+    color: #ff69b4; /* Neon pink text color */
+}
+
+button:hover, input:hover, select:hover {
+    background: #ff69b4; /* Neon pink background on hover */
+    color: #000; /* Black text on hover */
+}
