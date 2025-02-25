@@ -4,13 +4,13 @@ Index of all my school projects
 
 ## [1 term](https://github.com/ranopashec/BSU/term_1)
 
-- [C++ Programming]
-- [C++ in Yandex Group](https://github.com/ranopashec/BSU/term_1)
+- C++ Programming
+- C++ in Yandex Group
 - Calculus
 - Higher algebra
 - Higher geometry
 
-## [2 term](<(https://github.com/ranopashec/BSU/term_2)>)
+## [2 term](https://github.com/ranopashec/BSU/term_2)
 
 - Calculus
 - Assembler
