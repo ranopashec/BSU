@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "70a041b2780944fa",
+        "id": "70d6cba0de256ca7",
         "type": "tabs",
         "children": [
           {
-            "id": "9fc17f4440555c0c",
+            "id": "5e78492593a52b6a",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -70,7 +70,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -163,7 +164,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9fc17f4440555c0c",
+  "active": "b157cf5542f80779",
   "lastOpenFiles": [
     "docs/readme.md",
     "docs/images/Screenshot 2025-03-17 at 19.33.56.png",
