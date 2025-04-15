@@ -22,11 +22,11 @@
 
 ### 2. Запустить приложение Terminal.
 
-![](../images/terminal.png)
+![](terminal.png)
 
 ### 3. Изучить структуру команд на примере команды echo 'Hello World'.
 
-![](../images/hello%20world.png)
+![](hello%20world.png)
 
 ### 4. Рассмотреть команды ls, cd, vi, more, less, mkdir, cat, cp, mv, rm, find, !!, history, clear, sudo и описать их назначение.
 
@@ -62,8 +62,8 @@
 
 ### 5. Выведите сообщение «Имя Фамилия», указав Ваше имя и фамилию, в виде нескольких строк с помощью команд echo и banner. При необходимости установите требуемое приложение.
 
-![](../images/name.png)
-![](../images/banner_name.png)
+![](name.png)
+![](banner_name.png)
 
 ### 6. Прочитайте статью справочной системы man о пользовании справочной системой.
 

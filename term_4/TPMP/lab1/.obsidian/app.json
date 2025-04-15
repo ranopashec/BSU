@@ -1,4 +1,5 @@
 {
   "useMarkdownLinks": true,
-  "attachmentFolderPath": "./images"
+  "attachmentFolderPath": "./images",
+  "alwaysUpdateLinks": true
 }
