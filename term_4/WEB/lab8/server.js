@@ -1,18 +1,17 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3000;
 
-app.use(express.static('./dist'));
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-app.get('/application', (req, res) =>
-	res.sendFile('./index.html', {root: 'dist/'}),
-);
+// Подключаем REST API
+require('./rest')(app);
 
-app.get('/download', (req, res) =>
-	res.download('./base.json', {root: 'files/'}),
-);
-
+// Запуск сервера
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-	console.log('Server is builded on port ' + PORT);
+    console.log(`Server is running on port ${PORT}`);
 });

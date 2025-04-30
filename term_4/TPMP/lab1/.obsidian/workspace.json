@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "70d6cba0de256ca7",
+        "id": "e4370f8434d30aa5",
         "type": "tabs",
         "children": [
           {
-            "id": "5e78492593a52b6a",
+            "id": "780da2228faeceba",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -70,8 +70,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -164,7 +163,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b157cf5542f80779",
+  "active": "5ae62caf47888ec7",
   "lastOpenFiles": [
     "docs/readme.md",
     "docs/images/Screenshot 2025-03-17 at 19.33.56.png",

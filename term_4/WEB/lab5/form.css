@@ -1,5 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
 
 .text {
@@ -14,9 +15,6 @@ text-align: center;
 margin-bottom: 30px;
 }
 
-.form-container {
-text-align: center;
-}
 
 form {
 display: inline-block;

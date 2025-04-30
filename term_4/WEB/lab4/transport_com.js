@@ -31,7 +31,6 @@ function addInformation() {
   var key = prompt("Enter the text:");
   var value = prompt("Enter the text");
   if (key == null || value == null) {
-    console.log("Input data is empty. Try one more time.");
     return;
   }
   storage.AddValue(key, value);
@@ -51,9 +50,7 @@ function deleteInformation() {
 function getInformation() {
   var key = prompt("Enter the text:");
   var info = storage.GetValue(key);
-  if (info === undefined) {
-    console.log("Not found.");
-  } else {
+  if (info != undefined){
     console.log("Review of " + key + ": " + info);
   }
 }
@@ -61,7 +58,7 @@ function getInformation() {
 function listAllInformation() {
   var keys = storage.GetKeys();
   if (keys.length === 0) {
-    console.log("No information available.");
+    console.log("empty");
   } else {
     keys.forEach(key => {
       console.log(key + ': ' + storage.GetValue(key));
