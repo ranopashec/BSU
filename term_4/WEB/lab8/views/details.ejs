@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= transport.brand %> - <%= transport.licensePlate %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><%= transport.type %> <%= transport.brand %></h1>
+        <a href="/" class="btn">Назад к списку</a>
+    </header>
+
+    <main>
+        <div class="details-container">
+            <div class="detail-row">
+                <span class="detail-label">Гос. номер:</span>
+                <span class="detail-value"><%= transport.licensePlate %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Грузоподъемность:</span>
+                <span class="detail-value"><%= transport.capacity %> кг</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Статус:</span>
+                <span class="detail-value"><%= transport.status %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Дата создания:</span>
+                <span class="detail-value"><%= new Date(transport.createdAt).toLocaleString() %></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Последнее обновление:</span>
+                <span class="detail-value"><%= new Date(transport.updatedAt).toLocaleString() %></span>
+            </div>
+            
+            <div class="actions">
+                <a href="/<%= transport.id %>/edit" class="btn">Редактировать</a>
+                <button class="btn btn-danger" onclick="deleteTransport('<%= transport.id %>')">Удалить</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
