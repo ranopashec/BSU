@@ -1,3 +1,0 @@
-/Users/rano/Documents/projects/bsu/term_4/OS/Colloquium/cmake-build-debug/CMakeFiles/Colloquium.dir
-/Users/rano/Documents/projects/bsu/term_4/OS/Colloquium/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/rano/Documents/projects/bsu/term_4/OS/Colloquium/cmake-build-debug/CMakeFiles/rebuild_cache.dir

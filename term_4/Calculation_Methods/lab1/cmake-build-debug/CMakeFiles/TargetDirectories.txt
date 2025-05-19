@@ -1,3 +1,0 @@
-/Users/rano/Documents/projects/bsu/term_4/Calculation_Methods/lab1/cmake-build-debug/CMakeFiles/lab1.dir
-/Users/rano/Documents/projects/bsu/term_4/Calculation_Methods/lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/rano/Documents/projects/bsu/term_4/Calculation_Methods/lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
