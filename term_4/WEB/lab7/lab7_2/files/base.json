@@ -1,7 +1,7 @@
 {
-  "partner1": "Swift Cargo Solutions",
-  "partner2": "Velocity Logistics Group",
-  "partner3": "Turbo Transit Partners",
-  "partner4": "Rapid Express Enterprises",
-  "partner5": "Momentum Transport Co."
+  "new co.": "Swift Cargo Solutions",
+  "old co.": "Velocity Logistics Group",
+  "real co.": "Turbo Transit Partners",
+  "unreal co.": "Rapid Express Enterprises",
+  "other co.": "Momentum Transport Co."
 }

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Добавить запчасть</title></head>
+<link rel="stylesheet" href="/style.css">
+<body>
+    <h1>Добавить запчасть</h1>
+    <form method="POST" action="/parts/add">
+        <input name="name" placeholder="Название" required><br>
+        <input name="description" placeholder="Описание" required><br>
+        <input name="price" placeholder="Цена" type="number" required><br>
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

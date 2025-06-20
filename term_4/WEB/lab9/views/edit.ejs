@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Редактировать запчасть</title></head>
+<link rel="stylesheet" href="/style.css">
+<body>
+    <h1>Редактировать "<%= oldName %>"</h1>
+    <form method="POST" action="/parts/edit/<%= oldName %>">
+        <input name="name" value="<%= oldName %>" required><br>
+        <input name="description" value="<%= part.description %>" required><br>
+        <input name="price" type="number" value="<%= part.price %>" required><br>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

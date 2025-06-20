@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Список запчастей</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>Список запчастей</h1>
+
+    <div class="controls">
+        <input type="text" name="search" placeholder="Поиск по названию" value="">
+        <select name="sort">
+            <option value="">Без сортировки</option>
+            <option value="asc">По возрастанию</option>
+            <option value="desc">По убыванию</option>
+        </select>
+    </div>
+
+    <ul class="parts-list"></ul>
+
+    <div class="pagination-controls">
+        <button id="prev-btn">← Назад</button>
+        <span id="page-info">Страница 1 из 1</span>
+        <button id="next-btn">Вперёд →</button>
+    </div>
+
+    <script src="/dist/bundle.js"></script>
+</body>
+
+</html>

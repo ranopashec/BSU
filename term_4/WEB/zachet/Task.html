@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>форма</title>
+</head>
+<body>
+    <span id="container"></span>
+
+    <script>
+        // Создаем форму через innerHTML (более лаконично)
+        document.getElementById('container').innerHTML = `
+            <form>
+                <br>
+                
+                <select>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="winter">Winter</option>
+                </select>
+                
+                <br>
+                
+                <div>
+                    <input type="radio" name="status" id="active" checked>
+                    <label for="active">1</label>
+                    
+                    <input type="radio" name="status" id="inactive">
+                    <label for="inactive">2</label>
+                </div>
+                
+                <button >button</button>
+            </form>
+        `;
+    </script>
+</body>
+</html>

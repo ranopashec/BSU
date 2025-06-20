@@ -1,41 +1,27 @@
-// Setting up express server
 const express = require('express');
 const path = require('path');
-var cors = require('cors');
 const app = express();
+const PORT = 3000;
 
-// The server will only serve static files from the dist directory
-app.use(cors());
-app.use(express.static('./dist'));
+// Раздаём статику из папки dist
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// Path to the directory where files are stored on disk
-const FILES_DIR = path.join(__dirname, 'files');
-
-// Routing to serve the index.html page
-app.get('/demo1', (req, res) =>
-  res.sendFile('index.html', { root: 'dist/' })
-);
-
-// Routing to download a file
-app.get('/download/:file', function(req, res, next) {
-  const file_name = FILES_DIR + '/' + req.params.file;
-  res.download(file_name, function(err) {
-    if (!err) return; // File sent
-    if (err.status !== 404) return next(err); // Error other than 404
-    // File for download not found
-    res.statusCode = 404;
-    res.send('Failed to find file!');
-  });
+// Путь к JSON-файлу
+app.get('/data', (req, res) => {
+    res.sendFile(path.join(__dirname, 'files', 'base.json'));
 });
 
-const portno = 3000; // Port number to be used
-// Starting the server
-const server = app.listen(portno, function() {
-  const port = server.address().port;
-  console.log(
-    "Server is running at http://localhost:" +
-      port +
-      " and serving directory " +
-      __dirname
-  );
+// Отдаём index.html по умолчанию
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+// Скачивание JSON по запросу (доп. условие)
+app.get('/download', (req, res) => {
+    res.download(path.join(__dirname, 'files', 'base.json'));
+});
+
+// Запуск сервера
+app.listen(PORT, () => {
+    console.log(`Сервер запущен на http://localhost:${PORT}`);
 });

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/rano/Documents/projects/BSU/term_4/Calculation_Methods/lab2/main'
+relocations:     []
+...

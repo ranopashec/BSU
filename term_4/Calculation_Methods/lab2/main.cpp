@@ -1,83 +1,149 @@
 #include <iostream>
-#include <cmath>
 #include <vector>
+#include <cmath>
+#include <iomanip>
+#include <fstream>
+#include <string>
 
-// Функция для вычисления конечных разностей
-double finiteDifference(const std::vector<double>& y, int order, int index) {
-    if (order == 0) {
-        return y[index];
-    } else {
-        if (index + order >= y.size()) {
-            throw std::invalid_argument("Index out of range");
-        }
-        return finiteDifference(y, order - 1, index + 1) - finiteDifference(y, order - 1, index);
-    }
+using namespace std;
+
+const int POINTS = 100;
+const double a = -3, b = 3;
+const double PI = 3.14159265358979323846;
+
+double f1(double x) { return x * x * cos(2 * x); }
+double f2(double x) { return 1.0 / (1 + 5 * x * x); }
+
+
+vector<double> newtonDividedDifferences(const vector<double>& x, const vector<double>& y)
+{
+    int n = x.size();
+    vector<double> coef(y);
+    for (int j = 1; j < n; j++)
+        for (int i = n - 1; i >= j; i--)
+            coef[i] = (coef[i] - coef[i - 1]) / (x[i] - x[i - j]);
+    return coef;
 }
 
-// Функция для вычисления разделённых разностей
-double dividedDifference(const std::vector<double>& x, const std::vector<double>& y, int order, int index) {
-    if (order == 0) {
-        return y[index];
-    } else {
-        if (index + order >= x.size() || index + order >= y.size()) {
-            throw std::invalid_argument("Index out of range");
-        }
-        return (dividedDifference(x, y, order - 1, index + 1) - dividedDifference(x, y, order - 1, index)) / (x[index + order] - x[index]);
-    }
-}
-
-// Функция для построения интерполяционного многочлена Ньютона на равноотстоящих узлах
-double newtonPolynomialUniform(const std::vector<double>& x, const std::vector<double>& y, double xValue) {
-    double result = y[0];
-    double h = x[1] - x[0];
-    for (int i = 1; i < y.size(); ++i) {
-        double term = finiteDifference(y, i, 0) / (pow(h, i) * tgamma(i + 1));
-        double product = 1.0;
-        for (int j = 0; j < i; ++j) {
-            product *= (xValue - x[j]);
-        }
-        result += term * product;
-    }
+double newtonInterpolation(double x, const vector<double>& nodes, const vector<double>& coef)
+{
+    double result = coef.back();
+    for (int i = coef.size() - 2; i >= 0; i--)
+        result = result * (x - nodes[i]) + coef[i];
     return result;
 }
 
-// Функция для построения интерполяционного многочлена Ньютона на чебышёвских узлах
-double newtonPolynomialChebyshev(const std::vector<double>& x, const std::vector<double>& y, double xValue) {
-    double result = dividedDifference(x, y, 0, 0);
-    for (int i = 1; i < y.size(); ++i) {
-        double term = dividedDifference(x, y, i, 0);
-        double product = 1.0;
-        for (int j = 0; j < i; ++j) {
-            product *= (xValue - x[j]);
+vector<double> equidistantNodes(int n)
+{
+    vector<double> nodes(n + 1);
+    for (int i = 0; i <= n; i++)
+        nodes[i] = a + i * (b - a) / n;
+    return nodes;
+}
+
+vector<double> chebyshevNodes(int n)
+{
+    vector<double> nodes(n + 1);
+    for (int i = 0; i <= n; i++)
+        nodes[i] = (a + b) / 2.0 + (b - a) / 2.0 * cos((2.0 * i + 1) * PI / (2.0 * (n + 1)));
+    return nodes;
+}
+
+void writeToFile(const string& filename, const vector<double>& nodes, const vector<double>& coef, double (*f)(double))
+{
+    ofstream file(filename);
+    for (int i = 0; i <= POINTS; i++)
+    {
+        double xi = a + i * (b - a) / POINTS;
+        double yi = newtonInterpolation(xi, nodes, coef);
+        file << xi << " " << yi << endl;
+    }
+    file.close();
+}
+
+double computeError(const vector<double>& nodes, const vector<double>& coef, double (*f)(double))
+{
+    double maxError = 0;
+    for (int i = 0; i <= POINTS; i++)
+    {
+        double xi = a + i * (b - a) / POINTS;
+        double error = fabs(newtonInterpolation(xi, nodes, coef) - f(xi));
+        if (error > maxError) maxError = error;
+    }
+    return maxError;
+}
+
+int main()
+{
+    
+    vector<int> ns = { 3, 10, 20, 30 };
+
+    ofstream file_f1("f1.txt");
+    ofstream file_f2("f2.txt");
+    for (int i = 0; i <= POINTS; i++)
+    {
+        double xi = a + i * (b - a) / POINTS;
+        file_f1 << xi << " " << f1(xi) << endl;
+        file_f2 << xi << " " << f2(xi) << endl;
+    }
+    file_f1.close();
+    file_f2.close();
+
+    cout << "======================================================================\n";
+    cout << "error for f1(x) = x²cos(2x)\n";
+    cout << "n  | max error (ravnoudaleniye)  | max error (Chebishev)\n";
+    cout << "---|-----------------------------|-----------------------------\n";
+
+    for (int n : ns)
+    {
+        vector<double> x_eq = equidistantNodes(n);
+        vector<double> x_ch = chebyshevNodes(n);
+
+        vector<double> y1_eq(n + 1), y1_ch(n + 1);
+        for (int i = 0; i <= n; i++)
+        {
+            y1_eq[i] = f1(x_eq[i]);
+            y1_ch[i] = f1(x_ch[i]);
         }
-        result += term * product;
+
+        vector<double> coef1_eq = newtonDividedDifferences(x_eq, y1_eq);
+        vector<double> coef1_ch = newtonDividedDifferences(x_ch, y1_ch);
+
+        writeToFile("P1_" + to_string(n) + ".txt", x_eq, coef1_eq, f1);
+        writeToFile("C1_" + to_string(n) + ".txt", x_ch, coef1_ch, f1);
+
+        cout << setw(2) << n << " | "
+            << setw(27) << fixed << setprecision(12) << computeError(x_eq, coef1_eq, f1) << " | "
+            << setw(27) << computeError(x_ch, coef1_ch, f1) << endl;
     }
-    return result;
-}
 
-// Функция для вычисления гамма-функции (для конечных разностей)
-double tgamma(double x) {
-    if (x == 1 || x == 2) {
-        return 1.0;
-    } else if (x == 0.5) {
-        return sqrt(M_PI);
-    } else {
-        return (x - 1) * tgamma(x - 1);
+    cout << "\n======================================================================\n";
+    cout << "error for f2(x) = 1 / (1 + 5x²)\n";
+    cout << "n  | max error (ravnoudaleniye)  | max error (Chebishev)\n";
+    cout << "---|-----------------------------|-----------------------------\n";
+
+    for (int n : ns)
+    {
+        vector<double> x_eq = equidistantNodes(n);
+        vector<double> x_ch = chebyshevNodes(n);
+
+        vector<double> y2_eq(n + 1), y2_ch(n + 1);
+        for (int i = 0; i <= n; i++)
+        {
+            y2_eq[i] = f2(x_eq[i]);
+            y2_ch[i] = f2(x_ch[i]);
+        }
+
+        vector<double> coef2_eq = newtonDividedDifferences(x_eq, y2_eq);
+        vector<double> coef2_ch = newtonDividedDifferences(x_ch, y2_ch);
+
+        writeToFile("P2_" + to_string(n) + ".txt", x_eq, coef2_eq, f2);
+        writeToFile("C2_" + to_string(n) + ".txt", x_ch, coef2_ch, f2);
+
+        cout << setw(2) << n << " | "
+            << setw(27) << computeError(x_eq, coef2_eq, f2) << " | "
+            << setw(27) << computeError(x_ch, coef2_ch, f2) << endl;
     }
-}
-
-int main() {
-    // Пример использования для равноотстоящих узлов
-    std::vector<double> xUniform = {0.0, 1.0, 2.0, 3.0};
-    std::vector<double> yUniform = {1.0, 2.0, 3.0, 4.0};
-    double xValueUniform = 1.5;
-    std::cout << "Интерполяция на равноотстоящих узлах: " << newtonPolynomialUniform(xUniform, yUniform, xValueUniform) << std::endl;
-
-    // Пример использования для чебышёвских узлов
-    std::vector<double> xChebyshev = {cos(M_PI / 4), cos(M_PI / 2), cos(3 * M_PI / 4)};
-    std::vector<double> yChebyshev = {1.0, 0.0, -1.0};
-    double xValueChebyshev = 0.0;
-    std::cout << "Интерполяция на чебышёвских узлах: " << newtonPolynomialChebyshev(xChebyshev, yChebyshev, xValueChebyshev) << std::endl;
 
     return 0;
 }

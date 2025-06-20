@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": "1747904318869",
+    "type": "Фура",
+    "brand": "dis",
+    "licensePlate": "2321",
+    "capacity": 22,
+    "status": "В рейсе",
+    "createdAt": "2025-05-22T08:58:38.869Z",
+    "updatedAt": "2025-05-22T08:58:38.869Z"
+  },
+  {
+    "id": "1747904328184",
+    "type": "Фура",
+    "brand": "fdsfd",
+    "licensePlate": "123",
+    "capacity": 21,
+    "status": "В ремонте",
+    "createdAt": "2025-05-22T08:58:48.184Z",
+    "updatedAt": "2025-05-22T08:58:48.184Z"
+  }
+]

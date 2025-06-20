@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Transport Company SPA</title>
-        <script src="script.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Transport Company</h1>
-        <div id="APage"></div>
-
-        <div class="button-container">
-            <input class="button" type=button value='Main' onclick='switchToMainPage()'>
-            <input class="button" type=button value='About' onclick='switchToAboutPage()'>
-        </div>
-
-        <script>
-            switchToStateFromURLHash();
-        </script>          
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Transport Company SPA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Transport Company</h1>
+    
+    <div id="content">
+        <!-- Контент будет меняться здесь -->
+    </div>
+    
+    <div class="button-container">
+        <button class="button" onclick="showPage('Main')">Main</button>
+        <button class="button" onclick="showPage('About')">About</button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Показываем главную страницу при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('Main');
+        });
+    </script>
+</body>
 </html>
